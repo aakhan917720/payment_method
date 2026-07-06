@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
-import 'screens/payment_screen.dart';
+import 'package:payment_methoed/screens/payment_screens.dart';
 
-
-
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  Stripe.publishableKey = 'pk_test_51Tm9iI46kaApcreV8gZkQazQJBK7abdRh2I4uRsDPh5BUIl5sjJZ7zK5hqiMxZisD7GBhm5Ss4yVxifqx12wyMoD000iJFfcQR';
-
-  await Stripe.instance.applySettings();
-
-  runApp(MyApp());
+void main(){
+  runApp(
+    MaterialApp(
+      home: MyApp()
+    )
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Stripe Payment',
-      home: PaymentScreen(),
+    return Scaffold(
+      body: MaterialButton(
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context)=>PaymentScreen(),
+            )
+          );
+        },
+      ),
     );
   }
 }
